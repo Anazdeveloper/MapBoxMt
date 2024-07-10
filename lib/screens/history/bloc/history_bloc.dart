@@ -10,7 +10,11 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryStates> {
       try {
         emit(InitialLoading());
         final datas = await HiveHelper().fetchDrivingDatas();
-        emit(DataFetched(datas: datas));
+        if(datas.isEmpty) {
+          emit(EmptyData(message: "Empty Data"));
+        } else {
+          emit(DataFetched(datas: datas));
+        }
       } catch(e) {
         if(e is ApiError) {
           emit(DataFetchingFailure(error: e));

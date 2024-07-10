@@ -30,3 +30,12 @@ class DataFetchingFailure extends HistoryStates {
   @override
   List<Object?> get props => [error];
 }
+
+class EmptyData extends HistoryStates {
+  final String message;
+
+  EmptyData({required this.message});
+
+  @override
+  List<Object?> get props => [message];
+}

@@ -57,6 +57,13 @@ class _HistoryScreenState extends State<HistoryScreen> {
                           }
                         },
                         builder: (context, state) {
+                          if(state is EmptyData) {
+                            Navigator.of(context).pop();
+                            return Center(
+                              child: Text(state.message),
+                            );
+                          }
+
                           if(state is DataFetched) {
                             Navigator.of(context).pop();
                             return Expanded(
@@ -82,35 +89,35 @@ class _HistoryScreenState extends State<HistoryScreen> {
                           );
                         },
                     ),
-                    Positioned(
-                        bottom: 0,
-                        child: Container(
-                          color: Colors.blueAccent,
-                          width: MediaQuery.of(context).size.width,
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                MaterialButton(
-                                  color: Colors.white,
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: const Text(
-                                    'Go Back',
-                                    style: TextStyle(
-                                        color: Colors.blueAccent
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        )
-                    )
                   ],
+                ),
+                Positioned(
+                    bottom: 0,
+                    child: Container(
+                      color: Colors.blueAccent,
+                      width: MediaQuery.of(context).size.width,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            MaterialButton(
+                              color: Colors.white,
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: const Text(
+                                'Go Back',
+                                style: TextStyle(
+                                    color: Colors.blueAccent
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    )
                 )
               ],
             ),
